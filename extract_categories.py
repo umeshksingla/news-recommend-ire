@@ -35,8 +35,8 @@ for k, v in lang_dict.items():
 
 categories = []
 for k, v in en_articles.items():
-	if "category" in v.keys():
-		categories.append(v["category"])
+	if "categories" in v.keys():
+		categories.extend(v["categories"])
 		c += 1
 
 categories = [c.lower() for c in categories]
