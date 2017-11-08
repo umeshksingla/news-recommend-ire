@@ -11,7 +11,7 @@ en_articles = {}
 
 c = 0
 for i in range(1, 10):
-	file = '../IRE_project_snapshot/0' + str(i) + '-05-2017_2'
+	file = '../../IRE_project_snapshot/0' + str(i) + '-05-2017_2'
 	print(file)
 	with open(file, 'r') as f:
 		for line in f:
@@ -34,12 +34,20 @@ for k, v in lang_dict.items():
 	print(len(v))
 
 categories = []
+category_wise_articles = {}
 for k, v in en_articles.items():
-	if "categories" in v.keys():
-		categories.extend(v["categories"])
+	if "category" in v.keys():
+		categories.append(v["category"])
+		if v["category"] not in category_wise_articles.keys():
+			category_wise_articles[v["category"]] = []
+		category_wise_articles[v["category"]].append(k)
 		c += 1
 
 categories = [c.lower() for c in categories]
+
+for k, v in category_wise_articles.items():
+	print(k, end=" ")
+	print(len(v))
 
 print(sorted(set(categories)))
 print(len(set(categories)))
