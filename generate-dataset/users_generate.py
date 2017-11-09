@@ -396,7 +396,7 @@ def no_read_articles_to_degree_online_engagement_mapping(n, number_of_articles=[
         return degree_online_engagement[len(number_of_articles) - 1]
 
 articles_cats = {}
-with open('art-cat-subcat', 'r') as f:
+with open('../files/art-cat-subcat', 'r') as f:
 	for line in f:
 		l = line.split()
 		articles_cats[l[0]] = {'category' : l[1], 'subcategory' : l[2]}
@@ -426,7 +426,7 @@ for user_id, articles in user_articles.items():
 	}
 	user_features[user_id] = v
 
-with open('user_data1.csv', 'w') as w:
-	w.write("user_id" + ", " + "age_segment" + ", " + "gender" + ", " + "city" + ", " + "degree_online_engagement" + '\n')
+with open('user_data.csv', 'w') as w:
+	w.write("user_id" + "," + "age_segment" + "," + "gender" + "," + "city" + "," + "degree_online_engagement" + '\n')
 	for u, o in user_features.items():
-		w.write(u + ", " + o['age_segment'] + ", " + o['gender'] + ", " + o['city'] + ", " + o['degree_online_engagement'] + '\n')
+		w.write(u + "," + o['age_segment'] + "," + o['gender'] + "," + o['city'] + "," + o['degree_online_engagement'] + '\n')
