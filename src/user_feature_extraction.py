@@ -10,7 +10,6 @@ File desc: Feature extraction for users, taking following features:
 
 '''
 
-from io import StringIO
 import json
 
 user_features = {}
