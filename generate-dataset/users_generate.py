@@ -23,18 +23,8 @@ for i in range(1, 10):
 						user_articles[user_id].add(a_id)
 
 
-print(len(user_articles))
-c = 0
-
-age_segments = ['12to18', '18to25', '25to35', '35to50', '50to70']
-gender = ['Male', 'Female']
-cities = ['ahmedabad', 'andhra_pradesh', 'au', 'bangalore', 'bihar', \
-		'ca', 'chennai', 'delhi', 'gujarat', 'hyderabad', 'india', \
-		'karnataka', 'kerala', 'kolkata', 'madhya_pradesh', 'mumbai', \
-		'others', 'us', 'world']
-degree_online_engagement = ['highly_active', 'moderately_active', 'less_active', 'highly_inactive']
-
 # age
+age_segments = ['12to18', '18to25', '25to35', '35to50', '50to70']
 category_to_age_mapping = {
 	'automobiles': age_segments[2],
 	'business': age_segments[3],
@@ -60,9 +50,15 @@ category_to_age_mapping = {
 }
 
 # gender
+
 # randomly assign
+gender = ['Male', 'Female']
 
 # city
+cities = ['ahmedabad', 'andhra_pradesh', 'au', 'bangalore', 'bihar', \
+		'ca', 'chennai', 'delhi', 'gujarat', 'hyderabad', 'india', \
+		'karnataka', 'kerala', 'kolkata', 'madhya_pradesh', 'mumbai', \
+		'others', 'us', 'world']
 subcategory_to_city_mapping = {
 	'ae_all': 'others',
 	'ahmedabad_all':'ahmedabad' ,
@@ -375,7 +371,11 @@ subcategory_to_city_mapping = {
 	'technology': 'world',
 	'travel': 'others', 
 	'pentertainment' :'others',
-	'others': 'others'
+	'others': 'others',
+	'pautomobiles': 'others' ,
+	'pcomputing': 'others',
+	'pcriminals': 'world',
+	'pfoods': 'world'
 }
 
 # degree of engagement
@@ -384,6 +384,7 @@ subcategory_to_city_mapping = {
 # 11 <= 'Moderately Active' <= 50,
 # 3 <= 'Less Active' <= 10,
 # 1 <= 'Highly Inactive' <= 2
+degree_online_engagement = ['highly_active', 'moderately_active', 'less_active', 'highly_inactive']
 
 def no_read_articles_to_degree_online_engagement_mapping(n, number_of_articles=[0, 2, 10, 50]):
     if n < number_of_articles[0]:
@@ -402,42 +403,30 @@ with open('art-cat-subcat', 'r') as f:
 
 def assign_age(a):
 	if a[0] not in articles_cats.keys():
-		# print(a[0])
 		return category_to_age_mapping['others']
 	return category_to_age_mapping[articles_cats[a[0]]['category']]
 
 def assign_city(a):
-	# print(a)
-
-	# print(articles_cats[a[0]])
-	# print(articles_cats[a[0]]['subcategory'])
 	try:
 		subc = articles_cats[a[0]]['subcategory']
 		if subc == 0 or subc == '0':
 			return 'others'
-		return subcategory_to_city_mapping[articles_cats[a[0]]['subcategory']]
+		return subcategory_to_city_mapping[subc]
 	except:
 		return subcategory_to_city_mapping['others']
 
 user_features = {}
-c = 0
 for user_id, articles in user_articles.items():
 	a = list(articles)
-	# try:
-
 	v = {
 		'gender' : gender[random.randint(0, 1)],
 		'age_segment' :  assign_age(a),
 		'degree_online_engagement': no_read_articles_to_degree_online_engagement_mapping(len(a)),
 		'city': assign_city(a)
 	}
-	print(v)
 	user_features[user_id] = v
 
-with open('user_data.csv', 'w') as w:
+with open('user_data1.csv', 'w') as w:
 	w.write("user_id" + ", " + "age_segment" + ", " + "gender" + ", " + "city" + ", " + "degree_online_engagement" + '\n')
 	for u, o in user_features.items():
 		w.write(u + ", " + o['age_segment'] + ", " + o['gender'] + ", " + o['city'] + ", " + o['degree_online_engagement'] + '\n')
-print(user_features)
-print(len(user_features))
-print(c)
