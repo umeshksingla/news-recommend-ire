@@ -88,7 +88,9 @@ subcategories = ['ae_all', 'ahmedabad_all', 'andhra_pradesh_all', 'ar_all', \
 		'world_technology_it_companies', 'world_technology_social_media', 'world_technology_startups', \
 		'za_all', 'za_entertainment', 'za_news', 'za_sports']
 
-sample_feature_vec = dict.fromkeys(categories + subcategories, 0)
+category_vec = dict.fromkeys(categories, 0)
+subcategory_vec = dict.fromkeys(subcategories, 0)
+
 article_data = '../files/article_data.csv'
 
 with open(article_data, 'r') as f:
@@ -101,10 +103,16 @@ with open(article_data, 'r') as f:
 		category = l[1]
 		subcategory = l[2]
 
-		article_features[article_id] = sample_feature_vec.copy()
-		article_features[article_id][category] = 1
-		article_features[article_id][subcategory] = 1
+		c_vec = category_vec.copy()
+		subc_vec = subcategory_vec.copy()
+
+		c_vec[category] = 1
+		subc_vec[subcategory] = 1
+
+		article_features[article_id] = list(c_vec.values()) + list(subc_vec.values())
 
 with open('article_features_engineered.csv', 'w') as w:
 	for article_id, features in article_features.items():
-		w.write(article_id + ',' + ','.join(str(x) for x in features.values()[:-1]) + '\n')
+		s = str(','.join(str(x) for x in features))
+		w.write(article_id + ',' + s + '\n')
+
