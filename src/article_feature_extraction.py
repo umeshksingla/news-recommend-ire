@@ -107,4 +107,4 @@ with open(article_data, 'r') as f:
 
 with open('article_features_engineered.csv', 'w') as w:
 	for article_id, features in article_features.items():
-		w.write(article_id + ',' + ','.join(str(x) for x in features.values()) + '\n')
+		w.write(article_id + ',' + ','.join(str(x) for x in features.values()[:-1]) + '\n')
