@@ -35,9 +35,9 @@ Hybrid LinUCB works similar to LinUCB algorithm but the only difference lies in 
 
 After executing the above commands you will find your article and user feature vector csv files in files folder and ipython notebook showcases the comparison of implemented algorithms based on certain parameter. To get the evaluation metric run python /src/evaluation.py which comprises of HIT@K, NDCG@K, MAP and many other mtrics for evaluation.
 
-##### Presentation slides:
+##### Presentation:
 
-https://www.slideshare.net/UmeshSingla1/personalized-news-recommendation-stream-data-based
+[SlideShare](https://www.slideshare.net/UmeshSingla1/personalized-news-recommendation-stream-data-based)
 
 ##### Note: 
 * Use `python>=2.7.13`
