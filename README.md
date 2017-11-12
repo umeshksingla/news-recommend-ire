@@ -39,6 +39,10 @@ After executing the above commands you will find your article and user feature v
 
 [SlideShare](https://www.slideshare.net/UmeshSingla1/personalized-news-recommendation-stream-data-based)
 
+##### Page:
+
+[Github Pages](https://umeshksingla.github.io/news-recommend-ire/)
+
 ##### Note: 
 * Use `python>=2.7.13`
 * Not necessarily tested for script use
